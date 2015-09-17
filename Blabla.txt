@@ -1,0 +1,5 @@
+CREATE TYPE dbo.Array 
+AS TABLE
+(
+  Element NVARCHAR(255)
+);

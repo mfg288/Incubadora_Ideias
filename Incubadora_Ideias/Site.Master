@@ -1,0 +1,198 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Incubadora_Ideias.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/Content/Images/Logos/Logo.png" rel="shortcut icon" type="image/x-icon" />
+
+    <link href="Content/StyleSheet.css" rel="stylesheet" />
+    <link href="Content/FileInput/fileinput.min.css" rel="stylesheet" />
+    <link href="Content/Selectize/selectize.bootstrap3.css" rel="stylesheet" />
+    <link href="Content/StarRating/star-rating.min.css" rel="stylesheet" />
+    <link href="Content/FontAwesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="Content/BootstrapSocial/bootstrap-social.css" rel="stylesheet" />
+    <link href="Content/Selectize/selectize.css" rel="stylesheet" />
+    <link href="Content/Selectize/selectize.default.css" rel="stylesheet" />
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server" EnablePageMethods="true">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <asp:ScriptReference Path="~/Scripts/FileInput/fileinput.min.js" />
+                <asp:ScriptReference Path="~/Scripts/FileInput/fileinput_locale_pt.js" />
+                <asp:ScriptReference Path="~/Scripts/Selectize/selectize.min.js" />
+                <asp:ScriptReference Path="~/Scripts/StarRating/star-rating.min.js" />
+                <asp:ScriptReference Path="~/Scripts/Scripts/Scripts.js" />
+                <asp:ScriptReference Path="~/Scripts/Scripts/Ajax.js" />
+            </Scripts>
+        </asp:ScriptManager>
+
+        <%--Error report--%>
+        <div class="modal fade" id="report_error" runat="server" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Reportar Erro</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="inp_title" class="col-sm-2 control-label">Título</label>
+                                    <div class="col-sm-10">
+                                        <input id="inp_title" runat="server" class="form-control" type="text" autocomplete="off" />
+                                        <asp:RequiredFieldValidator
+                                            ControlToValidate="inp_title"
+                                            runat="server"
+                                            ForeColor="#c60000"
+                                            Display="Dynamic"
+                                            Text="Por favor insira um Título"
+                                            ValidationGroup="error_report" />
+                                        <asp:RegularExpressionValidator
+                                            ControlToValidate="inp_title"
+                                            Display="Dynamic"
+                                            runat="server"
+                                            ForeColor="#c60000"
+                                            ValidationExpression=".{3,25}"
+                                            Text="Por favor insira um valor entre 3 e 25 caracteres"
+                                            ValidationGroup="error_report" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ta_descript" class="col-sm-2 control-label">Descrição</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="ta_descript" class="form-control" rows="5" runat="server"></textarea>
+                                        <asp:RequiredFieldValidator
+                                            ControlToValidate="ta_descript"
+                                            Text="Por favor insira uma Descrição"
+                                            runat="server"
+                                            ForeColor="#c60000"
+                                            Display="Dynamic"
+                                            ValidationGroup="error_report" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fi_error" class="col-sm-2 control-label">Anexos</label>
+                                    <div class="col-sm-10">
+                                        <asp:FileUpload ID="fu_error" runat="server" AllowMultiple="true" />(Opcional)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" data-dismiss="modal" />
+                        <asp:Button runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="Report_Erro" ValidationGroup="error_report" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%-- Navbar --%>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/Index.aspx">
+                        <img alt="Brand" src="/Content/Images/Logos/Logo.png" height="35">
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li id="li_home_navbar" runat="server"><a runat="server" href="~/Index.aspx"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp&nbspPrincipal</a></li>
+                        <li id="li_ideas_navbar" runat="server"><a runat="server" href="~/Ideias.aspx"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp&nbspIdeas</a></li>
+                        <li id="li_procurar_navbar" runat="server"><a runat="server" href="~/Procurar.aspx"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp&nbspProcurar</a></li>
+                        <li id="li_backoffice_navbar" runat="server"><a runat="server" href="~/BackOffice.aspx"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>&nbsp&nbspBackOffice</a></li>
+                    </ul>
+                    <asp:LoginView runat="server" ViewStateMode="Disabled" ID="loginview_id">
+                        <AnonymousTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li id="li_register_navbar" runat="server"><a runat="server" href="~/Account/Register">Registar</a></li>
+                                <li id="li_login_navbar" runat="server"><a runat="server" href="~/Account/Login">Log in</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a tabindex="0" role="button" id="badge_convite" class="btn popovers" style="outline: none;" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="" data-content="test content <a href='' title='test add link'>link on content</a>">
+                                        <span class="badge">0</span>
+                                    </a>
+                                </li>
+                                <li id="li_manage_navbar" runat="server"><a runat="server" href="~/Account/Manage" title="Manage your account">Ola, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                <li>
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Logout" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                </li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+        </div>
+
+        <%-- Conteiner --%>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <%-- Footer --%>
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-right">
+                    <a class="btn btn-social-icon btn-facebook btn-sm">
+                        <i class="fa fa-facebook"></i>
+                    </a><a class="btn btn-social-icon btn-google btn-sm">
+                        <i class="fa fa-google"></i>
+                    </a><a class="btn btn-social-icon btn-twitter btn-sm">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <p>
+                        <button type="button" runat="server" id="bn_report" class="btn btn-link report-error" data-toggle="modal" data-target="#report_error">Reportar Erro</button>
+                    </p>
+                </div>
+                <div class="footer-left">
+                    <p class="footer-links">
+                        <a id="foo_home" runat="server" href="/Index.aspx">Principal</a>
+                        ·
+                        <a id="foo_ideias" runat="server" href="/Ideias.aspx">Ideias</a>
+                        ·
+                        <a id="foo_contacts" runat="server" href="/Contactos.aspx">Contactos</a>
+                        ·
+                        <a id="foo_sobre" runat="server" href="/Sobre.aspx">Sobre Nos</a>
+                    <p>Projecto Final - Incubadora Ideias &copy; 2015</p>
+                </div>
+            </div>
+        </footer>
+
+    </form>
+</body>
+</html>
