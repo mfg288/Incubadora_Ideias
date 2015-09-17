@@ -269,7 +269,7 @@ namespace Incubadora_Ideias
 
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand("SELECT *FROM Ideias WHERE Id = @id", con))
+                    using (SqlCommand cmd = new SqlCommand("SELECT * FROM Ideias WHERE Id = @id", con))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
                         con.Open();
@@ -278,7 +278,7 @@ namespace Incubadora_Ideias
                         {
                             if (reader.Read())
                             {
-                                userForm.Nome = reader[1].ToString();
+                                userForm.Titulo = reader[1].ToString();
 
                                 userForm.Descricao = reader[2].ToString();
 

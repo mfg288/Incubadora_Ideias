@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace Incubadora_Ideias.Models
 {
@@ -18,21 +15,32 @@ namespace Incubadora_Ideias.Models
         public string Foto { get; set; }
     }
 
+    public class Ideia
+    {
+        public string Titulo { get; set; }
+        public int Pontuacao { get; set; }
+        public string Descricao { get; set; }
+        public string Tipo { get; set; }
+        public int SomaVisualizacoes { get; set; }
+        public int MaxVisualizacoes { get; set; }
+        public int MinVisualizacoes { get; set; }
+        public decimal MedVisualizacoes { get; set; }
+        public List<string> Imagens { get; set; }
+        public List<string> Tags { get; set; }
+    }
 
     public class EditarErros
     {
         public int ID { get; set; }
-
         public string Descricao { get; set; }
-
         public string Titulo { get; set; }
         public string User { get; set; }
         public string UserName { get; set; }
     }
-    public class Ideia
+
+    public class RecuperarErros
     {
-        public string Nome { get; set; }
-        public string Descricao { get; set; }
-        public List<string> Tags { get; set; }
+        public string ErroDescricao { get; set; }
     }
+
 }

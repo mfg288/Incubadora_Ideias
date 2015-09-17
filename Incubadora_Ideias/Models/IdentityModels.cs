@@ -24,14 +24,13 @@ namespace Incubadora_Ideias.Models
         public Task<ClaimsIdentity> GenerateUserIdentityAsync(ApplicationUserManager manager)
         {
             return Task.FromResult(GenerateUserIdentity(manager));
-        }        
+        }
         public int IdSecret { get; set; }
         public string SecretAnswer { get; set; }
         public string Foto { get; set; }
         public bool Pessoal { get; set; }
         public int IdPais { get; set; }
         public bool Activo { get; set; }
-
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
