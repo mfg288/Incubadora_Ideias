@@ -129,7 +129,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li id="li_home_navbar" runat="server"><a runat="server" href="~/Index.aspx"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp&nbspPrincipal</a></li>
-                        <li id="li_ideas_navbar" runat="server"><a runat="server" href="~/Ideias.aspx"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp&nbspIdeas</a></li>
+                        <li id="li_ideas_navbar" runat="server"><a runat="server" href="~/Ideias.aspx"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp&nbspIdeias</a></li>
                         <li id="li_procurar_navbar" runat="server"><a runat="server" href="~/Procurar.aspx"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp&nbspProcurar</a></li>
                         <li id="li_backoffice_navbar" runat="server"><a runat="server" href="~/BackOffice.aspx"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>&nbsp&nbspBackOffice</a></li>
                     </ul>
