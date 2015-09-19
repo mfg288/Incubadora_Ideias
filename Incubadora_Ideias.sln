@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incubadora_Ideias", "Incubadora_Ideias\Incubadora_Ideias.csproj", "{16BAF433-DF4A-4DAD-9D4E-CE549EB84074}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incubadora_Ideias_Test", "Incubadora_Ideias_Test\Incubadora_Ideias_Test.csproj", "{8F862354-62C6-4742-9C79-42DF7FCDC3BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +15,10 @@ Global
 		{16BAF433-DF4A-4DAD-9D4E-CE549EB84074}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16BAF433-DF4A-4DAD-9D4E-CE549EB84074}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16BAF433-DF4A-4DAD-9D4E-CE549EB84074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F862354-62C6-4742-9C79-42DF7FCDC3BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F862354-62C6-4742-9C79-42DF7FCDC3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F862354-62C6-4742-9C79-42DF7FCDC3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F862354-62C6-4742-9C79-42DF7FCDC3BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
