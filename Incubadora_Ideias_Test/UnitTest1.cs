@@ -19,10 +19,10 @@ namespace Incubadora_Ideias_Test
         [Test]
         public void DecryptPassword()
         {
-            const string passPhrase = "abcdef";
+            const string passPhrasejbjibhihuih = "abcdef";
             const string encryptStr = "9axgjXkpkC4J+a/nekUvww==";
 
-            var decryptedstring = Helper.Decrypt(encryptStr, passPhrase);
+            var decryptedstring = Helper.Decrypt(encryptStr, passPhrasejbjibhihuih);
         }
     }
 }
