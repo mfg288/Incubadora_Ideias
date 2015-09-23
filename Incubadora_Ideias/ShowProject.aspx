@@ -13,7 +13,7 @@
 
         $(document).ready(function() {
 
-            var id = 25;
+            var id = 1;
             
             $.ajax({
                 url: "ShowProject.aspx/ObterIdeia",
@@ -23,7 +23,7 @@
                 data: "{ 'id':'" + id + "' }",
                 success: function (result) {
                     console.log(result);
-                    $("#MainContent_Image1").prop("src", "Files/Erros/61/NGSMaverick.png");
+                    $("#MainContent_Image1").prop("src", "Files/Ideas/" + id + "/mystats.png");
                     $("#title_show").text(result.d.Titulo);
                     $("#input-22").text(result.d.Pontuacao);
                     $("#inp_tags").val(result.d.Tags);
@@ -36,7 +36,8 @@
                 }
             });
             
-            });
+        });
+		
     </script>
 
     <div class="container">
@@ -45,7 +46,7 @@
             <div class="form-group">
                 <button class="fav-icon">
                     <span class="fa-stack fa-lg" style="">
-                        <i id="heart_glyp" runat="server"></i>
+                        <i id="heart_glyp" runat="server" OnClick="SetFavorito"></i>
                         <i id="ban_glyp" runat="server"></i>
                     </span>
                 </button>

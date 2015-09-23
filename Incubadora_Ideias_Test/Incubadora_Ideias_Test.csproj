@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\..\..\..\..\Prog\Library\Ciberbit.Enterprise\release_9.x\bin\NetV4\Libs\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

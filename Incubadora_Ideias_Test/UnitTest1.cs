@@ -10,7 +10,7 @@ namespace Incubadora_Ideias_Test
         [Test]
         public void EncryptPassword()
         {
-            const string password = "12345";
+            const string password = "password";
             const string passPhrase = "abcdef";
 
             var encryptedString = Helper.Encrypt(password, passPhrase);
@@ -19,10 +19,10 @@ namespace Incubadora_Ideias_Test
         [Test]
         public void DecryptPassword()
         {
-            const string passPhrasejbjibhihuih = "abcdef";
-            const string encryptStr = "9axgjXkpkC4J+a/nekUvww==";
+            const string passPhrase = "abcdef";
+			const string encryptStr = "rXKSYjwo39N5JYwB+GH0vzNIknlpYDRZ5Q0desum3B8=";
 
-            var decryptedstring = Helper.Decrypt(encryptStr, passPhrasejbjibhihuih);
+            var decryptedstring = Helper.Decrypt(encryptStr, passPhrase);
         }
     }
 }

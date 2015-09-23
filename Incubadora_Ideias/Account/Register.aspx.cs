@@ -27,7 +27,7 @@ namespace Incubadora_Ideias.Account
             var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text, IdSecret = Int32.Parse(ddl_secret.SelectedValue), SecretAnswer = tb_scrt_resp.Text, Foto = fu_register.HasFile?avatarName:"", Pessoal = tipoUser, IdPais = Int32.Parse(ddl_pais.SelectedValue), PhoneNumber = tb_phone.Text, Activo = true };
 
 
-
+			//TODO: Gravar user na BD usando uma função própria que não seja esta "Create()"
             IdentityResult result = manager.Create(user, Password.Text);
             if (result.Succeeded)
             {
