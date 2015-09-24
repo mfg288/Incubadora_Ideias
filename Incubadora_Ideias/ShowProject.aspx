@@ -11,10 +11,10 @@
         });
         //ghfyfygf
 
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             var id = 1;
-            
+
             $.ajax({
                 url: "ShowProject.aspx/ObterIdeia",
                 type: "POST",
@@ -35,9 +35,9 @@
                     console.log(result);
                 }
             });
-            
+
         });
-		
+
     </script>
 
     <div class="container">
@@ -46,7 +46,7 @@
             <div class="form-group">
                 <button class="fav-icon">
                     <span class="fa-stack fa-lg" style="">
-                        <i id="heart_glyp" runat="server" OnClick="SetFavorito"></i>
+                        <i id="heart_glyp" runat="server" onclick="SetFavorito"></i>
                         <i id="ban_glyp" runat="server"></i>
                     </span>
                 </button>
@@ -109,8 +109,11 @@
                     <asp:HyperLink ID="HyperLink2" runat="server">HyperLink</asp:HyperLink><br />
                     <asp:HyperLink ID="HyperLink3" runat="server">HyperLink</asp:HyperLink><br />
                 </input>
-
+             <asp:Panel ID="comments_div" runat="server"></asp:Panel>
             </div>
+       
         </div>
+
+
     </div>
 </asp:Content>
