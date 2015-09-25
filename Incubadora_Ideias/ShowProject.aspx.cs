@@ -14,7 +14,62 @@ namespace Incubadora_Ideias
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			//heart
+
+
+            HtmlGenericControl ul = new HtmlGenericControl("ul");
+            ul.Attributes.Add("id", "comments");
+            comments_div.Controls.Add(ul);
+
+            DataTable dt = new DataTable();
+            DataTable dt_slave = new DataTable();
+            string idideiaUrl = Request.QueryString["idideia"];
+
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("select Comentarios.Id,Comentario,Data,Anonimo,IdMaster,IdIdeia,Email ,Foto from Comentarios, AspNetUsers where IdIdeia=@idIdeia and AspNetUsers.id=Comentarios.IdUser and IdMaster is NULL order by Data", con))
+                    {
+                        cmd.Parameters.AddWithValue("@idIdeia", idideiaUrl);
+                        con.Open();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                        con.Close();
+                    }
+                    foreach (DataRow row in dt.Rows)
+                    {
+
+                        add_Comment(ul, row[0].ToString(), row[7].ToString(), row[6].ToString(), row[2].ToString(), row[1].ToString(), false, false);
+
+                        using (SqlCommand cmd = new SqlCommand("select Comentarios.Id,Comentario,Data,Anonimo,IdMaster,IdIdeia,Email,Foto from Comentarios, AspNetUsers where IdIdeia=@idIdeia and AspNetUsers.id=Comentarios.IdUser and IdMaster =@idMaster order by Data", con))
+                        {
+                            cmd.Parameters.AddWithValue("@idIdeia", idideiaUrl);
+                            cmd.Parameters.AddWithValue("@idMaster", row[0].ToString());
+
+                            con.Open();
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            da.Fill(dt_slave);
+                            con.Close();
+                        }
+                        foreach (DataRow row_slave in dt_slave.Rows)
+                        {
+
+                            add_Comment(ul, row_slave[0].ToString(), row_slave[7].ToString(), row_slave[6].ToString(), row_slave[2].ToString(), row_slave[1].ToString(), true, false);
+
+                        }
+                        dt_slave.Clear();
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            
+            
+            //heart
 			if (true)
 			{
 				heart_glyp.Attributes.Add("class", "fa fa-heart fa-stack-2x  heart-activate");
@@ -35,6 +90,20 @@ namespace Incubadora_Ideias
 
 
 			tagstest.Controls.Add(button);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		}
 
 		[WebMethod]
@@ -135,6 +204,77 @@ namespace Incubadora_Ideias
 
 			}
 		}
+        public void add_Comment(HtmlGenericControl parent, string id, string avatarSrc, string userName, string time, string comentraio, bool isMaster, bool anonimo)
+        {
+            HtmlGenericControl li;
+            if (isMaster == true)
+            {
+                HtmlGenericControl ul = new HtmlGenericControl("ul");
+                ul.Attributes.Add("id", "replies");
+                parent.Controls.Add(ul);
+
+                li = new HtmlGenericControl("li");
+                li.Attributes.Add("class", "cmmnt");
+                ul.Controls.Add(li);
+            }
+            else
+            {
+                li = new HtmlGenericControl("li");
+                li.Attributes.Add("class", "cmmnt");
+                parent.Controls.Add(li);
+            }
+
+
+            //avatar
+            HtmlGenericControl avatar = new HtmlGenericControl("div");
+            avatar.Attributes.Add("class", "avatar");
+            li.Controls.Add(avatar);
+
+            HtmlGenericControl a = new HtmlGenericControl("a");
+            a.Attributes.Add("href", "javascript:void(0)");
+            avatar.Controls.Add(a);
+
+            HtmlGenericControl img = new HtmlGenericControl("img");
+            img.Attributes.Add("src", "/Content/Images/users_Avatars" + avatarSrc);
+            img.Attributes.Add("width", "55");
+            img.Attributes.Add("height", "55");
+            img.Attributes.Add("alt", "blabla");
+            a.Controls.Add(img);
+
+            //comment
+            HtmlGenericControl comment = new HtmlGenericControl("div");
+            comment.Attributes.Add("class", "cmmnt-content");
+            li.Controls.Add(comment);
+
+            HtmlGenericControl header = new HtmlGenericControl("header");
+            comment.Controls.Add(header);
+
+            HtmlGenericControl a_comment = new HtmlGenericControl("a");
+            a_comment.Attributes.Add("class", "userlink");
+            if (anonimo == false)
+            {
+                a_comment.Attributes.Add("href", "#");
+                a_comment.InnerText = userName;
+            }
+            else
+            {
+                a_comment.InnerText = "Anonimo";
+            }
+
+
+            header.Controls.Add(a_comment);
+
+            HtmlGenericControl span_comment = new HtmlGenericControl("span");
+            span_comment.Attributes.Add("class", "pubdate");
+            span_comment.InnerText = " - " + time;
+            header.Controls.Add(span_comment);
+
+            HtmlGenericControl p_comment = new HtmlGenericControl("p");
+            p_comment.InnerText = comentraio;
+            comment.Controls.Add(p_comment);
+
+        }
+
 
 	}
 }

@@ -43,4 +43,18 @@ namespace Incubadora_Ideias.Models
         public string ErroDescricao { get; set; }
     }
 
+    //public class Ideiaid
+    //{
+    //    public string Titulo { get; set; }
+    //    public int Pontuacao { get; set; }
+    //    public string Descricao { get; set; }
+    //    public string Tipo { get; set; }
+    //    public int SomaVisualizacoes { get; set; }
+    //    public int MaxVisualizacoes { get; set; }
+    //    public int MinVisualizacoes { get; set; }
+    //    public decimal MedVisualizacoes { get; set; }
+    //    public List<string> Imagens { get; set; }
+    //    public List<string> Tags { get; set; }
+    //}
+
 }
